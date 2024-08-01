@@ -84,9 +84,27 @@ class Data:
         else:
             print("Ezt az ágyást nem ültetik be.")
 
-       
-            
+
+    def ProjectBeultetes(alloffers, maxoffers):
+
+        i=0
+
+        for offer in alloffers:
+            if offer[0] < offer[1]:    
+                calculated = offer[1] - offer[0]
+                i+=calculated
+                
+            else:
+                i += maxoffers - offer[0]
+                i += offer[1]
+                
         
+        if i == maxoffers:
+            print("Minden ágyás beültetésére van jelentkező.")
+        elif i >= maxoffers:
+            print("Átszervezéssel megoldható a beültetés.") 
+        else:
+            print("A beültetés nem oldható meg.")
 
         
 
@@ -107,8 +125,17 @@ both = d.WhichSide(alloffers, False)
 
 d.OfferStats(alloffers,100)
 
+allspotsnum = []
 
+for k in alloffers:
+    allspotsnum.append(k[1])
+    allspotsnum.append(k[0])
 
+allspotsnum.sort()
+
+d.ProjectBeultetes(alloffers,allspotsnum[-1])
+
+print(allspotsnum[-1])
 
 
 
