@@ -52,14 +52,48 @@ class Data:
 
         listings = []
         
-        for offer in range(len(alloffers)):
-            if alloffers[offer][0] < offernum and alloffers[offer][1] > offernum:
-                listings.append(offer)
         
+
+        for offer in range(len(alloffers)):
+            if alloffers[offer][0] <= offernum and alloffers[offer][1] >= offernum:
+                listings.append(offer)
+
+            if alloffers[offer][0] >= alloffers[offer][1] :
+                if alloffers[offer][0] <= offernum and alloffers[offer][1] >= offernum:
+                    listings.append(offer)
+
+
         if len(listings) > 0:
+            #Felajanlok szama
             print(listings)
+
+             #viragagyas szine ha csak elso hely szamit
+            curcolor = listings[0]
+            print(alloffers[curcolor][2])
+
+            #viragagyas szine ha mindegyik szamit
+            colors = []
+            for color in listings:
+                if alloffers[color][2] not in colors:
+                    colors.append(alloffers[color][2])
+            
+            print(colors)
+
+
+
         else:
             print("Ezt az ágyást nem ültetik be.")
+
+       
+            
+        
+
+        
+
+
+
+
+
 d = Data
 
 d.Sorting(offers,alloffers)
@@ -68,6 +102,8 @@ d.Sorting(offers,alloffers)
 #print(len(alloffers))
 
 #print(d.WhichSide(alloffers,False))
+
+both = d.WhichSide(alloffers, False)
 
 d.OfferStats(alloffers,100)
 
