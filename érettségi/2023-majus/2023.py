@@ -60,10 +60,50 @@ class Data:
 
         camps = []
        
-        for camp in allcamps:
-           camps.append(camp[4])
+        i = [0,""]
 
-        longest = max(camps)
+        for camp in allcamps:
+           if len(camp[4]) > i[0]:
+               i[0] = len(camp[4])
+               i.pop()
+               i.append(camp[5])
+              
+
+        for camp in allcamps:
+            if camp[5] == i[1]:
+                print(str(camp[0]) + " " + str(camp[1]) + " " + str(camp[5]))
+
+        
+    def Sorszam(month,day):
+
+        calender=[]
+        
+        top=30
+        curmonth=6
+        
+
+        for i in range(3):
+            if i > 0 :
+                curmonth+=1
+                if i < 2 :
+                    top+=1
+            for k in range(top):
+                curday = []
+                curday.append(curmonth)
+                curday.append(k+1)
+                calender.append(curday)
+
+                del curday
+
+        curdaylist=[]
+        curdaylist.append(month)
+        curdaylist.append(day)
+
+        for i in range(len(calender)):
+            if calender[i] == curdaylist:
+                print(i+1)
+        
+
 
         
 
@@ -78,9 +118,9 @@ d.Sorting(camps,allcamps)
 
 #d.Musiccamp(allcamps)
 
-d.Mostpopular(allcamps)
+#d.Mostpopular(allcamps)
 
-
+d.Sorszam(8,31)
 
 
 
