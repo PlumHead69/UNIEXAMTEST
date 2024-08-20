@@ -95,23 +95,27 @@ class Data:
 
                 del curday
 
-        k=0
-        for i in range(len(calender)):
-            if calender[i][0] == 6 and calender[i][1] > 16:
-                print(k)
-                k+=1
+        
+        for i in reversed(calender):
+            if i[0] == 6 and i[1] < 16:
+                calender.remove(i)
 
         curdaylist=[]
         curdaylist.append(month)
         curdaylist.append(day)
 
-        print(calender)
+        bool = False
+        cardaynum=[]
 
         for i in range(len(calender)):
             if calender[i] == curdaylist:
-                print(i)
-                print(len(calender))
-        
+                bool = True
+                cardaynum.append(i+1)
+
+        if bool == True:
+            print(cardaynum)    
+        else:
+            print("Nincs ilyen nap")       
 
 
         
@@ -129,7 +133,7 @@ d.Sorting(camps,allcamps)
 
 #d.Mostpopular(allcamps)
 
-d.Sorszam(8,31)
+d.Sorszam(6,16)
 
 
 
