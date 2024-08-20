@@ -95,13 +95,22 @@ class Data:
 
                 del curday
 
+        k=0
+        for i in range(len(calender)):
+            if calender[i][0] == 6 and calender[i][1] > 16:
+                print(k)
+                k+=1
+
         curdaylist=[]
         curdaylist.append(month)
         curdaylist.append(day)
 
+        print(calender)
+
         for i in range(len(calender)):
             if calender[i] == curdaylist:
-                print(i+1)
+                print(i)
+                print(len(calender))
         
 
 
