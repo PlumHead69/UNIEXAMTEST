@@ -74,7 +74,7 @@ class Data:
                 print(str(camp[0]) + " " + str(camp[1]) + " " + str(camp[5]))
 
         
-    def Sorszam(month,day):
+    def Sorszam(allcamps, month,day):
 
         calender=[]
         
@@ -112,13 +112,45 @@ class Data:
                 bool = True
                 cardaynum.append(i+1)
 
+
+        simult = 0
+
         if bool == True:
-            print(cardaynum)    
-        else:
-            print("Nincs ilyen nap")       
+            
+            for camp in allcamps:
+                
+                if camp[0] == month and camp[2] == month:
+                    if camp[1] <= day and camp[3] >= day:
+                        simult+=1
+                        
+
+                elif camp[0] != month and camp[2] == month:
+                    if camp[3] >= day:
+                        simult+=1
+                        
+            print("Ekkor éppen " + str(simult) + " tábor tart.")
+            
+        print("Nincs ilyen nap")  
+
+""" def Egytanulo(allcamps,id):
+
+        campslist = []
+
+        for camp in allcamps:
+            if id in camp[4] == True:   """
+            
+            
+              
+        
+             
 
 
         
+
+
+
+
+
 
 d = Data
 
@@ -133,7 +165,11 @@ d.Sorting(camps,allcamps)
 
 #d.Mostpopular(allcamps)
 
-d.Sorszam(6,16)
+"""month = input("hó: ")
+day = input("nap: ")"""
+
+
+d.Sorszam(allcamps,month = int(input("hó: ")),day = int(input("nap: ")))
 
 
 
