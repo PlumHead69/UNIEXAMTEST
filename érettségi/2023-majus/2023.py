@@ -37,9 +37,9 @@ class Data:
         for camp in allcamps:
             camptypes.append(camp[5])
 
-        print((len(camptypes)))
-        print(camptypes[0])
-        print(camptypes[-1])
+        print("Az adatsorok száma: " + str((len(camptypes))))
+        print("Az először rögzített tábor témája: " + str(camptypes[0]))
+        print("Az utoljára rögzített tábor témája: " + str(camptypes[-1]))
 
 
     def Musiccamp(allcamps):
@@ -51,7 +51,7 @@ class Data:
 
         if len(musics) > 0:
             for start in musics:
-                print(str(start[0])+ " " + str(start[1]) + " ")
+                print("Zenei tábor kezdődik " + str(start[0])+ "." + " hó " + str(start[1]) + ". napján ")
 
         else:
             print("Nem volt zenei tábor.")
@@ -71,6 +71,7 @@ class Data:
 
         for camp in allcamps:
             if camp[5] == i[1]:
+                print("Legnépszerűbbek:")
                 print(str(camp[0]) + " " + str(camp[1]) + " " + str(camp[5]))
 
         
@@ -130,28 +131,42 @@ class Data:
                         
             print("Ekkor éppen " + str(simult) + " tábor tart.")
             
-        print("Nincs ilyen nap")  
-
-""" def Egytanulo(allcamps,id):
+        else:
+            print("Nincs ilyen nap")  
+    
+    
+    def Egytanulo(allcamps,id):
 
         campslist = []
 
         for camp in allcamps:
-            if id in camp[4] == True:   """
-            
-            
+            if id in camp[4] :   
+                del camp [4]
+                campslist.append(camp)
+
               
+                
+        campslist = sorted(campslist)
+
+
+        k = open("egytanulo.txt", "w")
+
+        for camp in campslist:  
+            k.write(str(camp[0]) + "." + str(camp[1]) + "-" + str(camp[2]) + "." + str(camp[3]) + ". " + str(camp[4]) + "\n")
+        k.close()
+
+        if len(campslist) == 0:
+            print("Rossz gyerek id")  
+        else:
+            for date in range(len(campslist)-1):
+                if campslist[date][2:4] > campslist[date+1][0:2]:
+                    print("Nem mehet el mindegyik táborba.")
+                    break
+            else:
+                print("Mindegyik táborba elmehet")
+
         
-             
-
-
-        
-
-
-
-
-
-
+    
 d = Data
 
 
@@ -159,19 +174,23 @@ allcamps = []
 d.Sorting(camps,allcamps)
 #print(allcamps)
 
-#print(d.CountCamps(allcamps))
+print("Feladat 2")
+d.CountCamps(allcamps)
 
-#d.Musiccamp(allcamps)
+print("\n"+"Feladat 3")
+d.Musiccamp(allcamps)
 
-#d.Mostpopular(allcamps)
+print("\n"+"Feladat 4")
+d.Mostpopular(allcamps)
 
 """month = input("hó: ")
 day = input("nap: ")"""
 
-
+print("\n"+"Feladat 6")
 d.Sorszam(allcamps,month = int(input("hó: ")),day = int(input("nap: ")))
 
-
+print("\n"+"Feladat 7")
+d.Egytanulo(allcamps,id = input("Adja meg egy tanuló betűjelét: "))
 
 
 
