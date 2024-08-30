@@ -85,9 +85,17 @@ class Data:
             print("Ezt az ágyást nem ültetik be.")
 
 
-    def ProjectBeultetes(alloffers, maxoffers):
+    def ProjectBeultetes(alloffers):
 
         i=0
+
+        allspotsnum = []
+
+        for k in alloffers:
+            allspotsnum.append(k[1])
+            allspotsnum.append(k[0])
+
+        allspotsnum.sort()
 
         for offer in alloffers:
             if offer[0] < offer[1]:    
@@ -95,19 +103,45 @@ class Data:
                 i+=calculated
                 
             else:
-                i += maxoffers - offer[0]
+                i += allspotsnum[-1] - offer[0]
                 i += offer[1]
                 
         
-        if i == maxoffers:
+        if i == allspotsnum[-1]:
             print("Minden ágyás beültetésére van jelentkező.")
-        elif i >= maxoffers:
+        elif i >= allspotsnum[-1]:
             print("Átszervezéssel megoldható a beültetés.") 
         else:
             print("A beültetés nem oldható meg.")
 
         
+    def Szinek(alloffers):
 
+        k = open("szinek.txt", "w")
+        
+        i = 0
+        
+
+        #while i != len(alloffers):
+        while i != 1:
+            
+            if alloffers[i][0] > alloffers[i][1]:
+                for num in range(1,alloffers[i][1]):
+                    if num == 1:
+                        k.write(str(i+1)+ "\n")
+                        i+=1
+            else:
+                for num in range(alloffers[i][0],alloffers[i][1]+1):
+                    if num == 1:
+                        k.write(str(i+1)+ "\n")
+                        i+=1
+                        
+            
+        
+        
+        
+
+        k.close()
 
 
 
@@ -121,22 +155,14 @@ d.Sorting(offers,alloffers)
 
 #print(d.WhichSide(alloffers,False))
 
-both = d.WhichSide(alloffers, False)
+"""both = d.WhichSide(alloffers, False)
 
-d.OfferStats(alloffers,100)
+d.OfferStats(alloffers,100)"""
 
-allspotsnum = []
+"""d.ProjectBeultetes(alloffers)"""
 
-for k in alloffers:
-    allspotsnum.append(k[1])
-    allspotsnum.append(k[0])
 
-allspotsnum.sort()
-
-d.ProjectBeultetes(alloffers,allspotsnum[-1])
-
-print(allspotsnum[-1])
-
+d.Szinek(alloffers)
 
 
 
