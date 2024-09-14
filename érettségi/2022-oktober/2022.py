@@ -65,11 +65,11 @@ class Data:
 
         if len(listings) > 0:
             #Felajanlok szama
-            print(listings)
+            print("A felajánlók száma: " + str(len(listings)))
 
              #viragagyas szine ha csak elso hely szamit
             curcolor = listings[0]
-            print(alloffers[curcolor][2])
+            print("A virágágyás színe, ha csak az első ültet: " + str(alloffers[curcolor][2]))
 
             #viragagyas szine ha mindegyik szamit
             colors = []
@@ -77,7 +77,7 @@ class Data:
                 if alloffers[color][2] not in colors:
                     colors.append(alloffers[color][2])
             
-            print(colors)
+            print("A virágágyás színei: " + str(colors))
 
 
 
@@ -117,31 +117,100 @@ class Data:
         
     def Szinek(alloffers):
 
-        k = open("szinek.txt", "w")
+        sex = open("szinek.txt", "w")
         
-        i = 0
+        i = 1
+        numlist = []
         
-
-        #while i != len(alloffers):
-        while i != 1:
-            
-            if alloffers[i][0] > alloffers[i][1]:
-                for num in range(1,alloffers[i][1]):
-                    if num == 1:
-                        k.write(str(i+1)+ "\n")
-                        i+=1
-            else:
-                for num in range(alloffers[i][0],alloffers[i][1]+1):
-                    if num == 1:
-                        k.write(str(i+1)+ "\n")
-                        i+=1
+                       
                         
-            
+        for i in range(len(alloffers)):
+
+            if alloffers[i][0] < alloffers[i][1]:
+
+                for j in range(alloffers[i][0],alloffers[i][1]):
+
+                    offer=[]
+                    offer.append(j)
+                    offer.append(i)
+                    offer.append(alloffers[i][2])
+                    
+
+                    numlist.append(offer)
+
+                    del offer                    
+
+            else:
+
+                range_ = alloffers[i][1] + (len(alloffers) - alloffers[i][0])
+                
+
+                for k in range(alloffers[i][0],max(alloffers)[0]):
+
+                    offer=[]
+                    offer.append(k)
+                    offer.append(i)
+                    offer.append(alloffers[i][2])
+                    
+                    
+                    numlist.append(offer)
+
+                    del offer
+
+                for l in range(1,alloffers[i][1]+1):
+
+                    offer=[]
+                    offer.append(l)
+                    offer.append(i)
+                    offer.append(alloffers[i][2])
+                    
+
+                    numlist.append(offer)
+
+                    del offer
+
+                
+
+        sorter = []
+        for i in numlist:
+            sorter.append(i[0])
+        sorter.sort()
         
+        
+        offerslist = []
+        checklist = []
+        fauilty = []
+        
+        for offer in range(len(numlist)):
+            if numlist[offer][0] not in checklist:
+                
+                checklist.append(numlist[offer][0])
+                offerslist.append(numlist[offer])
+
+        for num in range(len(checklist)):
+            if num not in checklist:    
+                offerslist.insert(num, [" Nincs ultetes " , num])
+                checklist.insert(num,num)
+                fauilty.insert(num,num)
         
         
 
-        k.close()
+        num = 1
+        while num <= len(offerslist):
+
+            for i in range(len(checklist)):
+                if offerslist[i][0] == num and checklist[i] not in fauilty: 
+                    sex.write(str(offerslist[i][0]) + ". " + str(offerslist[i][1] + 1) + " " + str(offerslist[i][2]) + "\n")
+                    num+=1
+                elif num in fauilty:
+                    sex.write("Ez az ágyás nincs beültetve." + "\n")
+                    num+=1
+                    
+        
+       
+        
+
+        sex.close()
 
 
 
@@ -150,16 +219,19 @@ d = Data
 
 d.Sorting(offers,alloffers)
 
-#Felajanlasok szama
-#print(len(alloffers))
+print("2. Feladat")
+print("Felajanlasok szama: " + str(len(alloffers)))
 
-#print(d.WhichSide(alloffers,False))
+print("\n" + "3. Feladat")
+print("A bejárat mindkét oldalán ültetők: " + str(d.WhichSide(alloffers,False)))
 
-"""both = d.WhichSide(alloffers, False)
+print("\n" + "4. Feladat")
+sorszam = input("Adja meg az ágyás sorszámát: ")
+both = d.WhichSide(alloffers, False)
+d.OfferStats(alloffers,int(sorszam))
 
-d.OfferStats(alloffers,100)"""
-
-"""d.ProjectBeultetes(alloffers)"""
+print("\n" + "5. Feladat")
+d.ProjectBeultetes(alloffers)
 
 
 d.Szinek(alloffers)
