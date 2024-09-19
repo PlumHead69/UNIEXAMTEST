@@ -115,7 +115,7 @@ d.LatePupils(allpupils,'07:55','08:15',lates)
 
 
 
-"""#Feladat 2
+#Feladat 2
 print("2. Feladat")
 print("Az első tanuló " + allpupils[0][1] + "-kor lépett be a főkapun.")
 print("Az utolsó tanuló " + allpupils[-1][1] + "-kor lépett ki a főkapun.")
@@ -129,7 +129,7 @@ print("5. Feladat")
 print("Aznap " + str(d.ActcheckSet(allpupils,4)) + " tanuló kölcsönzött a könyvtárban.")
 bookact = d.ActcheckSet(allpupils,4)
 foodact = d.ActcheckSet(allpupils,3)
-print(d.More(bookact,foodact))
+d.More(bookact,foodact)
 
 #Feladat 6
 
@@ -139,7 +139,7 @@ print("7. Feladat")
 print("Egy tanuló azonosítója=")
 idinput = input()
 splitted = str(d.PupInfo(allpupils,idinput)).split(":")
-print("A tanuló érkezése és távozása között " + splitted[0] + " óra "+ splitted[1]+ " perc telt el.")"""
+print("A tanuló érkezése és távozása között " + splitted[0] + " óra "+ splitted[1]+ " perc telt el.")
 
 d.KisGecik(allpupils,'07:00','11:00')
 
