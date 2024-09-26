@@ -1,3 +1,4 @@
+import string
 f = open('rendel.txt', 'r')
 
 orders = []
@@ -38,10 +39,19 @@ class Datas():
 
     def SpecDay(allorders, costumday):
         days=[]
-        for i in allorders:
-            if i[0] == costumday:
-                days.append(i)
-        print("A rendelések száma az adott napon: " + str(len(days)))
+        num = string.digits
+        again = False
+
+        if costumday in num:
+            for i in allorders:
+                if i[0] == int(costumday):
+                    days.append(i)
+            print("A rendelések száma az adott napon: " + str(len(days)))
+        else:
+            #print("Rossz adat lett megadva")
+            again = True
+            return again 
+        
 
     def NoAdsCity(allorders):
         
@@ -117,22 +127,25 @@ d.Sorting(orders, allorders)
 print("2. Feladat")
 print("A rendelések száma: " + str(d.OrderCalc(allorders)))
 
-print("3. Feladat")
-print("Kérem adjon meg egy napot:" )
+print("\n" +"3. Feladat")
 
-dayselect = input()
-d.SpecDay(allorders,int(dayselect))
+dayselect = input("Kérem adjon meg egy napot:" )
+d.SpecDay(allorders,dayselect)
+if d.SpecDay(allorders,dayselect) == True:
+    print("Rossz adat lett megadva")
+    dayselect = input("\n" + "Kérem adjon meg egy napot:" )
+    d.SpecDay(allorders,dayselect)
 
-print("4. Feladat")
+print("\n" +"4. Feladat")
 print(str(d.NoAdsCity(allorders)) + " nap nem volt a reklámban nem érintett városból rendelés")
 
 
-print("5. Feladat")
+print("\n" +"5. Feladat")
 f5 = d.BiggestOrder(allorders)
 print("A legnagyobb darabszám: " + str(f5[0]) +"," + " a rendelés napja: " + str(f5[1]))
 
 
-print("7. Feladat")
+print("\n" +"7. Feladat")
 print("A rendelt termékek darabszáma a 21. napon" + " PL: " + 
       str(d.Osszes(allorders,'PL', 21,21,False)) + " TV: " +
       str(d.Osszes(allorders,'TV', 21,21,False)) + " NR: " +
@@ -158,52 +171,3 @@ print("Napok\t" + "1..10\t" + "11..20\t" + "21..30")
 print("PL   \t" + pl1 +"\t" + pl2 + "\t" + pl3)
 print("TV   \t" + tv1 +"\t" + tv2 + "\t" + tv3)
 print("NR   \t" + nr1 +"\t" + nr2 + "\t" + nr3)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
