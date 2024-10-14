@@ -79,6 +79,7 @@ print(f"{Helyes(jovalaszok,versenyzok[azonkeres])}\t(a versenyző helyes válasz
 sorszam = int(input("5. feladat: A feladat sorszáma = ") or "10")
 helyesvalasz = Jovalaszokdb(sorszam,versenyzok,jovalaszok)
 print(f"A feladatra {helyesvalasz} fő, a versenyzők {round(helyesvalasz/len(versenyzok) * 100,2)}%-a adott helyes választ.\n")
+
 print("6. feladat: A versenyzők pontszámának meghatározása\n")
 pontos = []
 
@@ -92,6 +93,7 @@ k = open("pontok.txt","w")
 
 for versenyzo in pontos:
     k.write(f"{versenyzo}\n")
+    
 
 #Rendezni kell a pontost
 def Rendezes(kl):
