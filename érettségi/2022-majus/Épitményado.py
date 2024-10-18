@@ -77,6 +77,6 @@ for i in range(len(utcak)):
 
 k.close()
 
-
+#wadsdadadas
 
 
