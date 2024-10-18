@@ -5,6 +5,7 @@ def ado(sav,alap,arak):
     else:
         return 0
 
+
 f = open("utca.txt","r")
 #{}
 utcak = []
