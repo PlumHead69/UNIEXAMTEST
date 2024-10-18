@@ -35,12 +35,10 @@ def Dobogosok(pontos):
     
     dobogosok = []
 
-    for i in range(len(pontos)):
-        helyezet = []
-        if len(dobogosok) < 1:
-            helyezet = [pontos[i], 1]
-            dobogosok.append(helyezet)
-            continue
+    helyezet = [pontos[0], 1]
+    dobogosok.append(helyezet)
+
+    for i in range(1,len(pontos)):
 
         if dobogosok[i-1][0][1] == pontos[i][1]:
             helyezet = [pontos[i], dobogosok[i-1][1]]
@@ -92,7 +90,9 @@ for kulcs, ertek in versenyzok.items():
 k = open("pontok.txt","w")
 
 for versenyzo in pontos:
-    k.write(f"{versenyzo}\n")
+    k.write(f"{versenyzo[0]} {versenyzo[1]}\n")
+
+k.close()
     
 
 #Rendezni kell a pontost
