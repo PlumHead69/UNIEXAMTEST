@@ -98,8 +98,22 @@ jelentkezet = []
 for tabor in taborok:
     if jel in tabor[4]:
         jelentkezet.append(tabor)
-print(jelentkezet)
 
+found = False
+for nezett in jelentkezet:
+    if found:
+        break
+    for i in range(1,len(jelentkezet)):
+        if jelentkezet[i] == nezett:
+            continue
+        elif nezett[2] == jelentkezet[i][0] and nezett[3] > jelentkezet[i][1]:
+            print("Nem mehet el mindegyik táborba.")
+            found = True
+            break
+
+if not found:
+    print("Mehet az összes jelentkezett táborba.")
+    
 
 
 
