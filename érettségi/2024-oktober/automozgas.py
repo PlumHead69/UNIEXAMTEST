@@ -13,7 +13,7 @@ def travelcalc(start,end,speed):
 f = open("jeladas.txt","r")
 
 autok = []
-#{}
+
 for line in f:
 
     auto = []
