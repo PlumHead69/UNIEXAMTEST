@@ -8,7 +8,7 @@ def travelcalc(start,end,speed):
 
     s = timespent/60 * speed
 
-    return round(s,1)
+    return s
 
 f = open("jeladas.txt","r")
 
@@ -44,7 +44,7 @@ items=[]
 for item in jelek:
     s = ':'.join(item)
     items.append(s)
-print("Jeladásainak időpontjai:",*items)
+print("Jeladásainak időpontjai:"," ".join(items))
 #bajos rész volt
 
 print("\n4. Feladat")
@@ -81,7 +81,9 @@ curdistance = 0
 for i in range(len(jelzesek)-1):
     s = jelzesek[i][1].values()
     print(":".join(s),curdistance,"km")
-    curdistance+=travelcalc(jelzesek[i][1],jelzesek[i+1][1],jelzesek[i][2])
+    cd = travelcalc(jelzesek[i][1],jelzesek[i+1][1],jelzesek[i][2])
+    cd = round(cd,1)
+    curdistance+=cd
 
 #7. Feladat
 mindeneslista = []

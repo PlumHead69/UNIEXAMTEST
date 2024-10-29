@@ -1,28 +1,16 @@
-def sorszam(hó,nap):
+def sorszam(ho,nap):
     
-    ido = [hó,nap]
-    days = []
-
-    for day in range(16,32):
-        pack = [6]
-        pack.append(day)
-        days.append(pack)
-    for day in range(1,31):
-        pack = [7]
-        pack.append(day)
-        days.append(pack)
-    for day in range(1,32):
-        pack = [8]
-        pack.append(day)
-        days.append(pack)
-
+    if ho == 6:
+        return nap - 15 
+    elif ho == 7:
+        return nap + 15
+    else:
+        return nap + 46
     
-    for i in range(len(days)):
-        if days[i] == ido:
-            return i+1
+    
+    
+    
         
-    a = "Helytelen adat"        
-    return(a)
 
 def hanytabor(ho,nap,taborok):
 
@@ -73,6 +61,7 @@ if vane == False:
     print("Nem volt zenei tábor.")
 
 print("\n4. Feladat")
+#1. megoldas
 members = 0
 clipp = [0]
 for i in range(len(taborok)):
@@ -83,8 +72,21 @@ for i in range(len(taborok)):
     elif len(taborok[i][4]) == members:
         clipp.append(taborok[i])
 
+
 print("Legnépszerűbbek:")
 print(f"{clipp[0][0]} {clipp[0][1]} {clipp[0][5]}\n")
+
+#2. megoldas
+
+def mibol(lista):
+    return len(lista[4])
+
+#lambda lista : len(lista[4])
+
+#leghosszabb = max(taborok,key = mibol)
+leghosszabb = max(taborok,key = lambda lista : len(lista[4]))
+print(leghosszabb[0],leghosszabb[1], leghosszabb[5])
+
 
 print("6. Feladat")
 hó = int(input("hó: ") or 8)
@@ -99,6 +101,7 @@ for tabor in taborok:
     if jel in tabor[4]:
         jelentkezet.append(tabor)
 
+#1. megoldas
 found = False
 for nezett in jelentkezet:
     if found:
@@ -114,7 +117,33 @@ for nezett in jelentkezet:
 if not found:
     print("Mehet az összes jelentkezett táborba.")
     
+#2. megoldas
+def Miszerint(lista):
+    return lista[0], lista[1]
 
 
+rendezett = sorted(jelentkezet,key= lambda lista : (lista[0],lista[1]))
 
+
+found2 = False
+for i in range(1,len(jelentkezet)):
+    if (jelentkezet[i][0] == jelentkezet[i-1][2] and jelentkezet[i][1] <= jelentkezet[i-1][3]) or (jelentkezet[i][0] < jelentkezet[i-1][2]):
+        found2 = True
+        
+if found2:
+    print("Nem mehet el mindegyik táborba.")
+else:
+    print("Mehet az összes jelentkezett táborba.")
+
+#3. megoldas
+
+found3 = False
+for i in range(1,len(jelentkezet)):
+    if sorszam(jelentkezet[i][0],jelentkezet[i][1]) < sorszam(jelentkezet[i-1][2],jelentkezet[i-1][3]):
+        found3 = True
+        
+if found3:
+    print("Nem mehet el mindegyik táborba.")
+else:
+    print("Mehet az összes jelentkezett táborba.")
 
