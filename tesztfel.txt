@@ -1,0 +1,11 @@
+1 895 Melyik evben kezdodott a Honfoglalas?
+3 6437 Hany km hosszu az Amazonas?
+1 8 Mi az 0, 2, 4, 6, … sorozat kovetkezo tagja?
+2 5050 Mennyi az elso 100 szam osszege?
+3 9 Hany lakosa volt Magyarorszag legkisebb telepulesenek, Iborfianak, 2012 januar 1-en?
+1 1867 Mikor volt a Kiegyezes?
+1 1222 Mikor adtak ki az Aranybullat?
+3 8 Mi a Fibonacci-sorozat 6. eleme?
+1 55 Mennyi -55 abszoluterteke?
+1 12 Mennyi 4 es 6 legkisebb kozos tobbszorose?
+A feladatsorra osszesen 17 pont adhato.

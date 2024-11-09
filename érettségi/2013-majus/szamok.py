@@ -22,16 +22,32 @@ for targy in valaszok:
     if targy[2] not in targyak:
         targyak.append(targy[2])
 print("5. Feladat\n"+"Az összes témakör: " , ", ".join(targyak))
-print(input("Milyen temakorbol szeretne kerdest kapni?") or "tortenelem" )
 
+print(f"6.Feladat")
+tema = input("Milyen temakorbol szeretne kerdest kapni?") or "tortenelem"
+temak = {}
+for i in range(len(kerdesek)):
+    if valaszok[i][2] == tema:
+        temak[kerdesek[i]] = valaszok[i]
+rkerdes = r.choice(list(temak.keys()))
+valasz = input(rkerdes)
+if temak[rkerdes][0] == valasz.strip(): 
+    print(f"A valasz {temak[rkerdes][1]} pontot er.")
+else:
+    print(f"A valasz 0 pontot er.\nA helyes válasz: {temak[rkerdes][0]}")
 
-
-
-
-
-
-
-
+k = open("tesztfel.txt","w")
+print("7. Feladat")
+f=0
+tesztkerdes = {}
+for i in range(10):
+    index_ = r.randrange(len(kerdesek))
+    if kerdesek[index_] not in tesztkerdes.keys():
+        tesztkerdes[kerdesek[index_]] = valaszok[index_]
+        k.write(str(valaszok[index_][1]) +" "+ str(valaszok[index_][0])+ " " + kerdesek[index_]+"\n")
+        f+=int(valaszok[index_][1])
+k.write("A feladatsorra osszesen " +  str(f)+ " pont adhato.")
+k.close()
 
 
 
