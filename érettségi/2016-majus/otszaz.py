@@ -19,6 +19,7 @@ def cikkek(vasarlas):
         voltmar.append(item)
         rendezett.append(items)
     return rendezett
+
 f = open("penztar.txt", "r")
 
 osszitem = []
@@ -27,13 +28,13 @@ for item in f:
     osszitem.append(str(item).strip())
 
 vasarlasok = []
-vasarlas = []
+s = []
 for item in osszitem:
     if item != "F":  
-        vasarlas.append(item)
+        s.append(item)
     else:
-        vasarlasok.append(vasarlas)
-        vasarlas = []
+        vasarlasok.append(s)
+        s = []
 
 f.close()
 
@@ -65,37 +66,27 @@ for i in range(len(vasarlasok)):
         hanyadik.append(i)
 print(f"Az első vásárlás sorszáma: {hanyadik[0]+1}")
 print(f"Az utolsó vásárlás sorszáma: {hanyadik[-1]+1}")
-print(f"{len(hanyadik)}vásárlás során vettek belőle.\n")
+print(f"{len(hanyadik)} vásárlás során vettek belőle.\n")
 
 print("6. Feladat")
-print(f"{darabszam} darab vételekor fizetendő: {ertek(darabszam)}")
+print(f"{darabszam} darab vételekor fizetendő: {ertek(darabszam)}\n")
 
 print("7. Feladat")
-voltmar = []
-for item in vasarlasok[sorszam-1]:
-    items = []
-    if item in voltmar:
-        continue
-    for nextitem in vasarlasok[sorszam-1]:
-        if nextitem == item:
-            items.append(nextitem)
-    voltmar.append(item)
-    #print(f"{len(items)} {items[0]}")
+#{}
+aruk = cikkek(sorszam-1)
+for aru in aruk:
+    print(f"{len(aru)} {aru[0]}")
 
-print(cikkek(sorszam-1))
+
 print("8. Feladat")
 
 k = open("osszeg.txt","w")
-
-for egyember in vasarlasok:
-    ertekek = 0
-    fasz = cikkek(egyember)
-    for fasz2 in fasz:
-        erteke = ertek(fasz2)
-        ertekek+= erteke
-print(ertekek)
-
-
+kosarak = []
+for i in range(len(vasarlasok)):
+    f = 0
+    for item in cikkek(i):
+        f+=(ertek(len(item)))
+    k.write(str(i+1) + " : "+str(f) + "\n")
 
 
 
