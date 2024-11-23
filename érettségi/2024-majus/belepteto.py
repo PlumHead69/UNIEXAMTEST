@@ -46,36 +46,55 @@ if evok < len(kolcsonzok):
 else:
     print("Nem voltak többen, mint a menzán.")
 
-be0 = []
+print("\n6. Feladat")
+
+allstudents = []
+studentinfo = []
 kesok = []
-for belep in be:
-    if belep[1][0] < "10":
-        be0.append(belep[0])
-for keso in belepsek:
-    if keso[0] in be0 and keso[1][0] == "10"and keso[1][1] >= "50" and keso[2] == 1:
+
+for student in belepsek:
+    if student[0] not in allstudents:
+        allstudents.append(student[0])
+
+for student in allstudents:
+    belep = 0
+    kilep = 0
+    belepesek = []
+    kilepesek = []
+    s = []
+    for studentaction in belepsek:
+        if studentaction[0] == student:
+            if studentaction[2] == 1:
+                belep +=1
+                belepesek.append(studentaction[1])
+            elif studentaction[2] == 2:
+                kilep +=1 
+                kilepesek.append(studentaction[1])
+    s.append(student)
+    s.append(belep)
+    s.append(kilep)
+    s.append(belepesek)
+    s.append(kilepesek)
+    studentinfo.append(s)
+
+for keso in studentinfo:
+    if keso[1] > keso[2]:
         kesok.append(keso[0])
-print(kesok)
-print(be0)
+print("Az érintett tanulók:")
+print(" ".join(kesok))
 
+print("\n7. Feladat")
+tanulo = input("Egy tanuló azonosítója= ") or "ZOOM"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+for student in studentinfo:
+    if student[0] == tanulo:
+        belep = student[3][0]
+        kilep = student[4][-1]
+        
+        if belep[1] < kilep[1]:
+            timespentminute =int(kilep[1]) - int(belep[1])
+            timespenthour = int(kilep[0]) - int(belep[0])
+        else:
+            timespentminute =int(kilep[1]) + 60 - int(belep[1])
+            timespenthour = int(kilep[0]) - int(belep[0]) -1
+        print(f"A tanuló érkezése és távozása között {timespenthour} óra {timespentminute} perc telt el.")
