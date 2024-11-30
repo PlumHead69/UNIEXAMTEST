@@ -1,10 +1,16 @@
-def osszes(reklam,nap,orders):
-    counter = 0
-    for order in orders:
-        if order['reklam'] == reklam and order['nap'] == nap:
-            counter += order['db']
-    return counter
-
+def osszes(reklam,nap,orders,bool):
+    if bool == False:
+        counter = 0
+        for order in orders:
+            if order['reklam'] == reklam and order['nap'] == nap:
+                counter += order['db']
+        return counter
+    else:
+        counter = 0
+        for order in orders:
+            if order['reklam'] == reklam and order['nap'] == nap:
+                counter += 1
+        return counter
 f = open('rendel.txt', 'r')
 
 orders = []
@@ -52,16 +58,30 @@ ads["NR"] = 0
 
 nums = []
 for ad in ads.keys():
-    nums.append((osszes(ad,21,orders)))
+    nums.append((osszes(ad,21,orders,False)))
 
 print(f"\n7. Feladat\nA rendelt termékek darabszáma a 21. napon PL: {nums[0]} TV: {nums[1]} NR: {nums[2]}")
 
+allads = []
+
+for ad in ads.keys():
+    s=[]
+    ten=0
+    twenty=0
+    thirty=0
+    for i in range(1,31):
+        if i <=10:
+            ten += osszes(ad,i,orders,True)
+        elif i >= 11 and i <= 20:
+            twenty += osszes(ad,i,orders,True)
+        else:
+            thirty += osszes(ad,i,orders,True)
+
+    s = [ten,twenty,thirty]
+    allads.append(s)
 
 
-
-
-
-
-
-
-
+print(f"\n8. Feladat:\nNapok    1..10   11..20  21..30")
+print(f"PL       {allads[0][0]}      {allads[0][1]}     {allads[0][2]}")
+print(f"TV       {allads[1][0]}      {allads[1][1]}     {allads[1][2]}")
+print(f"NR       {allads[2][0]}      {allads[2][1]}      {allads[2][2]}")
