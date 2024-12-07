@@ -2,7 +2,7 @@ def hatar(sor,ertek,kep):
     adottsor = kep[sor]
 
     for i in range(len(adottsor)-1):
-        if (int(adottsor[i+1][0]) + int(adottsor[i+1][1]) + int(adottsor[i+1][2])) - (int(adottsor[i][0]) + int(adottsor[i][1]) + int(adottsor[i][2]))  > ertek:
+        if int(adottsor[i+1][2]) - int(adottsor[i][2])  > ertek:
             return True
     return False 
 
@@ -70,7 +70,7 @@ for sotet in legsotetebbl:
 elteresek = []
 
 for i in range(len(kep)):
-    if hatar(i,32,kep) == True:
+    if hatar(i,10,kep) == True:
         elteresek.append(i+1)
 
-print(elteresek)
+print(f"\n6. feladat:\nA felhő legfelső sora: {elteresek[0]}\nA felhő legalsó sora: {elteresek[-1]}")
