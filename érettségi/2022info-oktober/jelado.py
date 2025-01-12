@@ -46,30 +46,37 @@ print(f"Bal alsó: {min_x} {min_y}, Jobb felső: {max_x} {max_y}")
 
 #6
 
+def distance_calc(first,second):
+    return m.floor(m.sqrt((first[3]-second[3])**2+(first[4]-second[4])**2))
+
+
 cur_distance= 0.000
 
 for i in range(len(signals)-1):
-    cur_distance += round(m.sqrt((signals[i][3]-signals[i+1][3])**2+(signals[i][4]-signals[i+1][4])**2),3)
+    cur_distance += distance_calc(signals[i],signals[i+1])
 print(cur_distance)
 
 #7
 
-
-for i in range(len(signals)-1):
+for i in range(2,len(signals)):
     time = 0
     distance = 0
-    if passed_sec(signals[i],signals[i+1]) > 5*60:
-        time += round(passed_sec(signals[i],signals[i+1])/5*60,0)
-    elif round(m.sqrt((signals[i][3]-signals[i+1][3])**2+(signals[i][4]-signals[i+1][4])**2),3) > 10:
-        distance += round(m.sqrt((signals[i][3]-signals[i+1][3])**2+(signals[i][4]-signals[i+1][4])**2)/10,0)
-    if time >= distance:
-        print(f"{signals[i][0]} {signals[i][1]} {signals[i][2]} időeltérés {time}")
-    elif distance > time:
-        print(f"{signals[i][0]} {signals[i][1]} {signals[i][2]} koordinata-eltérés {distance}")
+    if passed_sec(signals[i-1],signals[i]) > 360:
+        time += round(m.floor(passed_sec(signals[i-1],signals[i])/360))
+        
+    elif distance_calc(signals[i-1],signals[i]) > 10:
+        distance += (m.floor(distance_calc(signals[i-1],signals[i])/10))
+    else:
+        continue
+        
+    print(f"{m.floor(distance_calc(signals[i-1],signals[i])/10)} koordinata")
+    print(f"{round(m.floor(passed_sec(signals[i-1],signals[i]))/360)} time")
+    
 
-
-
-
+    if distance > time:
+        print(f"{signals[i][0]} {signals[i][1]} {signals[i][2]} koordinataelteres {distance}")
+    else:
+         print(f"{signals[i][0]} {signals[i][1]} {signals[i][2]} idoelteres {time}")
 
 
 
