@@ -52,6 +52,7 @@ for d in diary:
 print(i)
 
 #6
+
 names =[]
 for d in diary:
     names.append((d[1],d[2]))
@@ -74,5 +75,3 @@ most_missies = max(names_with_missings,key = lambda lista:lista[1])[1]
 for name in names_with_missings:
     if name[1] == most_missies:
         print(names_set[name[0]])
-
-
