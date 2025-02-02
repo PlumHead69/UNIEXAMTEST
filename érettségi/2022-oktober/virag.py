@@ -91,23 +91,3 @@ for i in range(1,places_num):
         k.write("# 0\n" )
 
 k.close()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
