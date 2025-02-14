@@ -1,9 +1,9 @@
-def mpbe(ora,perc,mp):
+def mpbe(ido):
     osszmp = 0
 
-    osszmp += ora * 3600
-    osszmp += perc * 60
-    osszmp += mp
+    osszmp += ido[0] * 3600
+    osszmp += ido[1] * 60
+    osszmp += ido[2]
 
     return osszmp
 
@@ -42,7 +42,7 @@ leghosszabb=0
 sorszam=0
 
 for i in range(len(hivasok)):
-    timecalc = mpbe(hivasok[i][1][0],hivasok[i][1][1],hivasok[i][1][2]) - mpbe(hivasok[i][0][0],hivasok[i][0][1],hivasok[i][0][2]) 
+    timecalc = mpbe(hivasok[i][1]) - mpbe(hivasok[i][0]) 
     if timecalc > leghosszabb:
         leghosszabb = timecalc
         sorszam = i+1
@@ -55,17 +55,23 @@ ora,perc,mp = input("Adjon meg egy idopontot! (ora perc masodperc):").split()
 varakozas = (int(ora),int(perc),int(mp))
 
 kovetkezo=0
+varakozok=0
 
-def hivasban(hivo,keresett):
-    if hivo[0][0] <= keresett[0] <= hivo[1][0] and hivo[0][1] <= keresett[1] <= hivo[1][1] and hivo[0][2] <= keresett[2] <= hivo[1][2]:
-        return True
+keresett_ido = mpbe(varakozas)
 
-
-varakozok = 0
 for i in range(len(hivasok)):
-    if hivasban(hivasok[i],varakozas):
-        kovetkezo = i+1
+    for ido in range(mpbe(hivasok[i][0]),mpbe(hivasok[i][1])):
+        if ido == keresett_ido:
+            kovetkezo=i+1
+
+idozona=[]
+for ido in range(mpbe(hivasok[kovetkezo-1][0]),mpbe(hivasok[kovetkezo-1][1])):
+    idozona.append(ido)
+
 for i in range(len(hivasok)):
-    if mpbe(hivasok[i][1][0],hivasok[i][1][1],hivasok[i][1][2]) > mpbe(hivasok[kovetkezo][1][0],hivasok[kovetkezo][1][1],hivasok[kovetkezo][1][2]):
+    if mpbe(hivasok[i][0]) in idozona:
+        varakozok+=1
+
 print(kovetkezo)
+print(varakozok)
 
