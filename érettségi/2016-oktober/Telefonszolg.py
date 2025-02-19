@@ -54,24 +54,28 @@ print(f"A leghosszabb ideig vonalban levo hivo {sorszam} sorban szerepel, a hiva
 ora,perc,mp = input("Adjon meg egy idopontot! (ora perc masodperc):").split()
 varakozas = (int(ora),int(perc),int(mp))
 
-kovetkezo=0
-varakozok=0
+varakozas_mp= mpbe(varakozas)
 
-keresett_ido = mpbe(varakozas)
-
-for i in range(len(hivasok)):
-    for ido in range(mpbe(hivasok[i][0]),mpbe(hivasok[i][1])):
-        if ido == keresett_ido:
-            kovetkezo=i+1
-
-idozona=[]
-for ido in range(mpbe(hivasok[kovetkezo-1][0]),mpbe(hivasok[kovetkezo-1][1])):
-    idozona.append(ido)
+in_que=[]
 
 for i in range(len(hivasok)):
-    if mpbe(hivasok[i][0]) in idozona:
-        varakozok+=1
+    if mpbe(hivasok[i][0]) <= varakozas_mp and mpbe(hivasok[i][1])>= varakozas_mp:
+        in_que.append(i+1)
 
-print(kovetkezo)
-print(varakozok)
+
+if len(in_que)>=2:
+    print(f"A varakozok szama: {len(in_que)-1} a beszelo a {in_que[0]}. hivo")
+elif len(in_que)==1:
+    print(f"A varakozok szama: 0 a beszelo a {in_que[0]}. hivo")
+elif len(in_que)==0:
+    print("Nem volt beszelo!")
+
+#6
+
+
+
+
+
+
+
 
