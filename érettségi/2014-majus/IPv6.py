@@ -8,6 +8,7 @@ with open("ip.txt","r") as f:
 print(len(datas))
 
 #3 mi a legalacsonyabb IP cim?
+print(min(datas))
 
 #4
 d=0
@@ -39,47 +40,37 @@ d.close()
 
 #6
 
-SERIAL_NUMBER = int(input("sorszam: ") or 10)-1
+SERIAL_NUMBER = int(input("sorszam: ") or 375)-1
 
-def cookie_cutter(IP):
-    return IP.split(":")
-
-print(cookie_cutter(datas[SERIAL_NUMBER]))
+IP = datas[SERIAL_NUMBER]
 
 
+while ":0" in IP:
+    IP = IP.replace(":0",":",)
 
 
+while "::" in IP:
+    IP = IP.replace("::",":0:")
 
-def first_short(IP):
-    cutted = cookie_cutter(IP)
-    newIP=[]
-    for piece in cutted:
-        if piece.count("0")==4:
-            newIP.append(piece.replace("0000","0")) 
-        
-        elif piece.count("0")>4:
-            if piece[0]=="0":
-                for i in range(1,len(piece)):
-                    if piece[i]=="0" and piece[i-1]!="0":
-                        piece[i].replace("0","")
-            newIP.append(piece)
-    return newIP
+print(IP)
 
-                
+#7
 
+if ":0:0:0:0:0:0:" in IP:
+    IP = IP.replace(":0:0:0:0:0:0:","::") 
 
+elif ":0:0:0:0:0:" in IP:
+    IP = IP.replace(":0:0:0:0:0:","::") 
 
+elif ":0:0:0:0:" in IP:
+    IP = IP.replace(":0:0:0:0:","::") 
 
-print(datas[SERIAL_NUMBER])
-print(first_short(datas[SERIAL_NUMBER]))
+elif ":0:0:0:" in IP:
+    IP = IP.replace(":0:0:0:","::") 
+
+elif ":0:0:" in IP:
+    IP = IP.replace(":0:0:","::",1) 
 
 
 
-
-
-
-
-
-
-
-
+print(IP)
