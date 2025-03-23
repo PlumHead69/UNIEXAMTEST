@@ -69,19 +69,17 @@ for car in signals:
     if car[0]==CAR_SIGN:
         chosen_car_list.append(car)
 
-print(chosen_car_list)
-
 cur_distance=0
-for i in range(len(chosen_car_list)):
-    if chosen_car_list[i][1]<chosen_car_list[i+1][1]:
-        minute = 60-chosen_car_list[i][2]+chosen_car_list[i][1]
-    cur_distance+=chosen_car_list[i][3]/
 
-
-
-
-
-
+if len(chosen_car_list)==0:
+    print("Nem szerepel a rendszam az adatbazisban!")
+else:
+    for i in range(1,len(chosen_car_list)):
+        if chosen_car_list[i][1]==chosen_car_list[i-1][1]:
+            cur_distance+=chosen_car_list[i-1][3]/((int(chosen_car_list[i][2])-int(chosen_car_list[i-1][2])/60))
+        else:
+            cur_distance+=chosen_car_list[i-1][3]/(((60-int(chosen_car_list[i-1][2]))+int(chosen_car_list[i][2]))/60)
+        print(cur_distance)
 
 
 
