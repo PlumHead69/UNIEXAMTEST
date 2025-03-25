@@ -74,12 +74,10 @@ cur_distance=0
 if len(chosen_car_list)==0:
     print("Nem szerepel a rendszam az adatbazisban!")
 else:
-    for i in range(1,len(chosen_car_list)):
-        if chosen_car_list[i][1]==chosen_car_list[i-1][1]:
+    for i in range(1,len(chosen_car_list)): 
             cur_distance+=chosen_car_list[i-1][3]/((int(chosen_car_list[i][2])-int(chosen_car_list[i-1][2])/60))
-        else:
-            cur_distance+=chosen_car_list[i-1][3]/(((60-int(chosen_car_list[i-1][2]))+int(chosen_car_list[i][2]))/60)
-        print(cur_distance)
+        
+            print(cur_distance)
 
 
 
@@ -113,5 +111,5 @@ for i in range(len(car_sings)):
 k.close()
 
 
-
+print((len(car_sings),len(signals)))
 

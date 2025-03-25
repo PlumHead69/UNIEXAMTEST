@@ -53,7 +53,7 @@ else:
 
 #6
 
-diakok=[]
+"""diakok=[]
 for diak in datas:
     if diak[0] not in diakok:
         diakok.append(diak[0])
@@ -76,7 +76,23 @@ for diak in diakok:
 kimenok=[]
 for i in range(len(diak_belepes)):
     if diak_belepes[i]!=diak_kilepes[i]:
-        kimenok.append(diakok[i])
+        kimenok.append(diakok[i])"""
+
+
+diakok = {}
+
+"""for diak in datas:
+    diakok[diak[0]] = 0"""
+
+for diak in datas:
+    if diak[2] == "1":
+        diakok.setdefault(diak[0],0)
+        diakok[diak[0]] += 1
+    if diak[2] == "2":
+        diakok[diak[0]] -= 1
+
+kimenok = [id for id, akcio in diakok.items() if akcio!=0]
+
 
 print(f"\n6. feladat\nAz érintett tanulók:")
 print(kimenok)
