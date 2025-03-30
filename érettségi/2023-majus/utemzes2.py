@@ -54,6 +54,7 @@ print(f"Ekkor éppen {c} tábor tart.")
 
 #7
 
+print(f"\n7. feladat")
 ID = input("Adja meg egy tanuló betűjelét:") or "L"
 
 jelentkezesek = [tabor for tabor in taborok if ID in tabor[4]]
@@ -62,13 +63,19 @@ rendezett=sorted(jelentkezesek, key=lambda lista:(lista[0],lista[1]))
 
 k=open("egytanulo.txt","w")
 
-mehet_e=True
+
 for i in range(len(rendezett)):
     k.write(str(rendezett[i][0])+"."+str(rendezett[i][1])+"-"+str(rendezett[i][2])+"."+str(rendezett[i][3])+". "+rendezett[i][5]+"\n")
     
+mehet_e=True
+for i in range(len(rendezett)-1):
+    if (rendezett[i][2]==rendezett[i+1][0] and rendezett[i][3] > rendezett[i+1][1]) or rendezett[i][2]>rendezett[i+1][0]:
+        mehet_e=False
 
-
-
+if mehet_e==True:
+    print("A tanuló mindegyik megjelölt táborba mehet")
+else:
+    print("A tanuló nem tud mindegyik megjelölt táborba menni")
 k.close()
 
 
