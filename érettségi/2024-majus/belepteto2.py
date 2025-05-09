@@ -50,39 +50,10 @@ if kolcsonzes>ebedelok:
 else:
     print("Nem voltak többen, mint a menzán.")
 
-
 #6
-
-"""diakok=[]
-for diak in datas:
-    if diak[0] not in diakok:
-        diakok.append(diak[0])
-
-diak_belepes=[]
-diak_kilepes=[]
-
-for diak in diakok:
-    be=0
-    ki=0
-    for diak_kibe in datas:
-        if diak==diak_kibe[0]:
-            if diak_kibe[2] =="1":
-                be+=1
-            elif diak_kibe[2] == "2":
-                ki+=1
-    diak_belepes.append(be)
-    diak_kilepes.append(ki)
-
-kimenok=[]
-for i in range(len(diak_belepes)):
-    if diak_belepes[i]!=diak_kilepes[i]:
-        kimenok.append(diakok[i])"""
 
 
 diakok = {}
-
-"""for diak in datas:
-    diakok[diak[0]] = 0"""
 
 for diak in datas:
     if diak[2] == "1":

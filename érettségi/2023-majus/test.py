@@ -1,2 +1,4 @@
-for i in range(3):
-    print(i)
+a=30
+b=-180
+
+print(359+(b+a))
