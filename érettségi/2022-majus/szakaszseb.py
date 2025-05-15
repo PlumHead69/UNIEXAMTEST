@@ -70,7 +70,7 @@ for meres in max_speeds:
 
 for bunti in buntetesek:
     if bunti[2]!=0:
-        k.write(bunti[0] + " " + str(bunti[1]) + " km/h\t" + str(bunti[2]) + "\n")
+        k.write(bunti[0] + " " + str(bunti[1]) + " km/h\t" + str(bunti[2]) + "Ft\n")
 
 k.close()
 
