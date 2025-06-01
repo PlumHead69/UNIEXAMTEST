@@ -5,7 +5,14 @@ with open("felszin_tpont.txt") as f:
 kraterek = []
 
 for krater in datas:
-    if len(krater)==5:
+
+    nev = ' '.join(krater[3:])
+    kraterek.append((float(krater[0]),float(krater[1]),float(krater[2]),nev))
+
+
+
+
+"""    if len(krater)==5:
         nev = krater[3] + " " + krater[4]
         kraterek.append((float(krater[0]),float(krater[1]),float(krater[2]),nev))
     elif len(krater)==6:
@@ -14,6 +21,8 @@ for krater in datas:
     elif len(krater)==7:
         nev = krater[3] + " " + krater[4] + " " + krater[5] + " " + krater[6]
         kraterek.append((float(krater[0]),float(krater[1]),float(krater[2]),nev))
+"""
+
 
 #2
 print(f"2. feladat\nA kráterek száma: {len(kraterek)}")
